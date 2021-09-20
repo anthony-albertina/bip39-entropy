@@ -1,14 +1,21 @@
 import requests
 import hashlib
 import random
+import sys
 
 # Official BIP39 wordlist
 url = 'https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt'
 wordList = requests.get(url).text.split("\n")[:-1]
 
-# Get user input for entropy
-print("Please enter as long of a string as possible to add unique entropy to the algorithm... ")
-userInput = input("Enter: ")
+print(len(sys.argv))
+# Get user input for entropy if not passed in as command line argument
+if (len(sys.argv) == 1):
+	print("Please enter as long of a string as possible to add unique entropy to the algorithm... ")
+	userInput = input("Enter: ")
+else:
+	userInput = ""
+	for i in range(len(sys.argv) - 1):
+		userInput += str(sys.argv[i + 1])
 
 # Seed with random number
 sha256Hash = hashlib.sha256(userInput.encode()).hexdigest()
