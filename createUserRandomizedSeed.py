@@ -7,7 +7,6 @@ import sys
 url = 'https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt'
 wordList = requests.get(url).text.split("\n")[:-1]
 
-print(len(sys.argv))
 # Get user input for entropy if not passed in as command line argument
 if (len(sys.argv) == 1):
 	print("Please enter as long of a string as possible to add unique entropy to the algorithm... ")
